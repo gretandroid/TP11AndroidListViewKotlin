@@ -17,7 +17,7 @@ import education.cccp.tp11listview.R.layout.activity_main
 import education.cccp.tp11listview.SecondActivity.Companion.CURRENT_PERSON_INDEX_KEY
 import education.cccp.tp11listview.SecondActivity.Companion.CURRENT_PERSON_KEY
 import education.cccp.tp11listview.SecondActivity.Companion.OUT_OF_BOUND_INDEX
-import education.cccp.tp11listview.SecondActivity.Companion.PERSON_LIST_KEY
+import education.cccp.tp11listview.SecondActivity.Companion.PERSONS_KEY
 import education.cccp.tp11listview.models.Person
 import education.cccp.tp11listview.repositories.PersonDao.delete
 import education.cccp.tp11listview.repositories.PersonDao.findAll
@@ -25,14 +25,13 @@ import education.cccp.tp11listview.repositories.PersonDao.save
 import java.io.Serializable
 import java.util.Objects.requireNonNull
 
-class MainActivity(
-    private var intentActivityResultLauncher: ActivityResultLauncher<Intent>
-) : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
 
     companion object {
         const val EMPTY_FIELD = ""
     }
 
+    private lateinit var intentActivityResultLauncher: ActivityResultLauncher<Intent>
     private var currentIndex: Int = OUT_OF_BOUND_INDEX
 
     private val personFirstNameEditText: EditText by lazy {
@@ -96,7 +95,7 @@ class MainActivity(
                 this,
                 SecondActivity::class.java
             ).putExtra(
-                PERSON_LIST_KEY,
+                PERSONS_KEY,
                 findAll() as Serializable
             )
         )
@@ -115,16 +114,14 @@ class MainActivity(
     }
 
     fun onClickShowAllButtonEvent(view: View) {
-        save(
-            currentIndex, findAll()[currentIndex].copy(
-                firstName = personFirstNameEditText.text.toString(),
-                lastName = personLastNameEditText.text.toString()
+        intentActivityResultLauncher.launch(
+            Intent(
+                this,
+                SecondActivity::class.java
+            ).putExtra(
+                PERSONS_KEY,
+                findAll() as Serializable
             )
         )
-        Toast.makeText(
-            this,
-            "person successfully updated",
-            LENGTH_SHORT
-        ).show()
     }
 }
