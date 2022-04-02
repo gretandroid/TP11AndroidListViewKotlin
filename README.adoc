@@ -1,1 +1,17 @@
 = TP 11 Android ListView Kotlin
+
+=== exo sur la branche master
+en partant de la version java, +
+passage vers une implémentation kotlin +
+tel que le screen suivant: +
++
+MainActivity +
+image:img/Screenshot_20220402-124702.png[MainActivity,width=340,height=580]
++
++
+SecondActivity +
+image:img/Screenshot_20220402-130613.png[SecondActivity,width=340,height=580]
++
++
+image:img/diagram_intents.png[MainActivity,width=540,height=380]
+
