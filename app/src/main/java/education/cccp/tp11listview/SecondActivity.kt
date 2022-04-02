@@ -1,11 +1,14 @@
 package education.cccp.tp11listview
 
+import android.R.layout.simple_list_item_1
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import education.cccp.tp11listview.R.id.personListViewId
 import education.cccp.tp11listview.R.layout.activity_second
+import education.cccp.tp11listview.models.Person
 
 class SecondActivity : AppCompatActivity() {
     companion object {
@@ -18,11 +21,11 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_second)
-        findViewById<ListView>(R.id.personListViewId).apply {
+        findViewById<ListView>(personListViewId).apply {
             adapter = ArrayAdapter(
                 this@SecondActivity,
-                android.R.layout.simple_list_item_1,
-                intent.getSerializableExtra(PERSON_LIST_KEY) as List<*>
+                simple_list_item_1,
+                intent.getSerializableExtra(PERSON_LIST_KEY) as List<Person>
             )
         }
     }
