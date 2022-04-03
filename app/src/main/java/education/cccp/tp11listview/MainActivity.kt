@@ -47,6 +47,26 @@ class MainActivity : AppCompatActivity() {
         personLastNameEditText.setText(lastName)
     }
 
+    private fun gotoSecondActivity() {
+        intentActivityResultLauncher.launch(
+            Intent(
+                this,
+                SecondActivity::class.java
+            ).putExtra(
+                PERSONS_KEY,
+                findAll() as Serializable
+            )
+        )
+    }
+
+    private fun makeTextPersonsIsEmpty() {
+        makeText(
+            this,
+            "person list is empty",
+            LENGTH_SHORT
+        ).show()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
@@ -93,19 +113,21 @@ class MainActivity : AppCompatActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     fun onClickEditButtonEvent(view: View) {
-        save(
-            currentIndex,
-            findAll()[currentIndex].copy(
-                firstName = personFirstNameEditText.text.toString(),
-                lastName = personLastNameEditText.text.toString()
+        if (currentIndex != OUT_OF_BOUND_INDEX) {
+            save(
+                currentIndex,
+                findAll()[currentIndex].copy(
+                    firstName = personFirstNameEditText.text.toString(),
+                    lastName = personLastNameEditText.text.toString()
+                )
             )
-        )
-        makeText(
-            this,
-            "person successfully modified",
-            LENGTH_SHORT
-        ).show()
-        gotoSecondActivity()
+            makeText(
+                this,
+                "person successfully modified",
+                LENGTH_SHORT
+            ).show()
+            gotoSecondActivity()
+        } else makeTextPersonsIsEmpty()
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -119,23 +141,11 @@ class MainActivity : AppCompatActivity() {
                 LENGTH_SHORT
             ).show()
             gotoSecondActivity()
-        }
+        } else makeTextPersonsIsEmpty()
     }
 
     @Suppress("UNUSED_PARAMETER")
     fun onClickShowAllButtonEvent(view: View) {
         gotoSecondActivity()
-    }
-
-    private fun gotoSecondActivity() {
-        intentActivityResultLauncher.launch(
-            Intent(
-                this,
-                SecondActivity::class.java
-            ).putExtra(
-                PERSONS_KEY,
-                findAll() as Serializable
-            )
-        )
     }
 }

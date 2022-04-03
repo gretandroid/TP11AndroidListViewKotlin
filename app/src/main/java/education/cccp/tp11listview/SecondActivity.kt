@@ -37,8 +37,8 @@ class SecondActivity : AppCompatActivity() {
                 //retrieve person's clicked
                 setResult(
                     RESULT_OK, Intent()
-                        .putExtra(CURRENT_PERSON_KEY, findAll()[index])
                         .putExtra(CURRENT_PERSON_INDEX_KEY, index)
+                        .putExtra(CURRENT_PERSON_KEY, findAll()[index])
                 )
                 finish()
             }
