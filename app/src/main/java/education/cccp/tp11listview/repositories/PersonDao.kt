@@ -4,9 +4,11 @@ import education.cccp.tp11listview.models.Person
 
 object PersonDao {
     private val persons = mutableListOf<Person>()
+    var counter = 0
+    fun idGenerator() = ++counter
 
     @Throws(Exception::class)
-    fun save(person: Person): Person = if (persons.add(person)) person
+    fun save(person: Person): Person = if (persons.add(person.copy(id= idGenerator()))) persons.last()
     else throw Exception("malformed exception : $person")
 
     fun save(
