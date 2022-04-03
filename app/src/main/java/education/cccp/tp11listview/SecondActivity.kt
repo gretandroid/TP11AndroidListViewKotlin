@@ -45,5 +45,6 @@ class SecondActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun onClickBackButtonEvent(view: View) = finish()
 }

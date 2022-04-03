@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
-import android.widget.Toast
 import android.widget.Toast.*
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
@@ -73,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun onClickCreateButtonEvent(view: View) {
         save(
             Person(
@@ -91,6 +91,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun onClickEditButtonEvent(view: View) {
         save(
             currentIndex,
@@ -107,6 +108,7 @@ class MainActivity : AppCompatActivity() {
         gotoSecondActivity()
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun onClickDeleteButtonEvent(view: View) {
         if (currentIndex != OUT_OF_BOUND_INDEX) {
             delete(currentIndex)
@@ -120,6 +122,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun onClickShowAllButtonEvent(view: View) {
         gotoSecondActivity()
     }

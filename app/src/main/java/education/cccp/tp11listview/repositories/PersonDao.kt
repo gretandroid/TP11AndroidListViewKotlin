@@ -24,8 +24,8 @@ object PersonDao {
     ): Person = persons.set(index, person)
 
     @JvmStatic
-    fun delete(index: Int) {
-        persons.run { if (size > index) removeAt(index) }
+    fun delete(index: Int) = persons.run {
+        if (size > index) removeAt(index)
     }
 
     @JvmStatic

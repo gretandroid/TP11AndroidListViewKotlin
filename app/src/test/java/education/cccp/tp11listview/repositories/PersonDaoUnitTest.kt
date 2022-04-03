@@ -50,6 +50,7 @@ class PersonDaoUnitTest {
 
     @Test
     fun `test supprimer une person`() {
+        printAll()
         save(person.copy())
         assert(findAll().isNotEmpty())
         val countBeforeDelete = findAll().size

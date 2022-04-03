@@ -1,6 +1,7 @@
 package education.cccp.tp11listview.models
 
-import org.junit.Assert
+import education.cccp.tp11listview.models.Person.Companion.PERSON_ID_DEFAULT_VALUE
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class PersonUnitTest {
@@ -8,8 +9,8 @@ class PersonUnitTest {
         firstName = "john",
         lastName = "Doe"
     )
+
     @Test
-    fun `test comportement du constructeur`() {
-        Assert.assertEquals(person.id, Person.PERSON_ID_DEFAULT_VALUE)
-    }
+    fun `test comportement du constructeur`() =
+        assertEquals(person.id, PERSON_ID_DEFAULT_VALUE)
 }
