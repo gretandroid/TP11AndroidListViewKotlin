@@ -5,8 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import android.widget.Toast.LENGTH_LONG
-import android.widget.Toast.LENGTH_SHORT
+import android.widget.Toast.*
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
@@ -25,14 +24,14 @@ import education.cccp.tp11listview.repositories.PersonDao.save
 import java.io.Serializable
 import java.util.Objects.requireNonNull
 
-class MainActivity: AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     companion object {
         const val EMPTY_FIELD = ""
     }
 
     private lateinit var intentActivityResultLauncher: ActivityResultLauncher<Intent>
-    private var currentIndex: Int = OUT_OF_BOUND_INDEX
+    private var currentIndex = OUT_OF_BOUND_INDEX
 
     private val personFirstNameEditText: EditText by lazy {
         findViewById(editTextPersonFirstNameId)
@@ -41,7 +40,10 @@ class MainActivity: AppCompatActivity() {
         findViewById(editTextPersonLastNameId)
     }
 
-    private fun setEditTextPersonFields(firstName: String, lastName: String) {
+    private fun setEditTextPersonFields(
+        firstName: String,
+        lastName: String
+    ) {
         personFirstNameEditText.setText(firstName)
         personLastNameEditText.setText(lastName)
     }
@@ -78,7 +80,7 @@ class MainActivity: AppCompatActivity() {
                 lastName = personLastNameEditText.text.toString()
             )
         )
-        Toast.makeText(
+        makeText(
             this,
             "person successfully added",
             LENGTH_LONG
@@ -90,30 +92,39 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun onClickEditButtonEvent(view: View) {
-        intentActivityResultLauncher.launch(
-            Intent(
-                this,
-                SecondActivity::class.java
-            ).putExtra(
-                PERSONS_KEY,
-                findAll() as Serializable
+        save(
+            currentIndex,
+            findAll()[currentIndex].copy(
+                firstName = personFirstNameEditText.text.toString(),
+                lastName = personLastNameEditText.text.toString()
             )
         )
+        makeText(
+            this,
+            "person successfully modified",
+            LENGTH_SHORT
+        ).show()
+        gotoSecondActivity()
     }
 
     fun onClickDeleteButtonEvent(view: View) {
         if (currentIndex != OUT_OF_BOUND_INDEX) {
             delete(currentIndex)
             setEditTextPersonFields(EMPTY_FIELD, EMPTY_FIELD)
-            Toast.makeText(
+            makeText(
                 this,
                 "person successfully deleted",
                 LENGTH_SHORT
             ).show()
+            gotoSecondActivity()
         }
     }
 
     fun onClickShowAllButtonEvent(view: View) {
+        gotoSecondActivity()
+    }
+
+    private fun gotoSecondActivity() {
         intentActivityResultLauncher.launch(
             Intent(
                 this,
