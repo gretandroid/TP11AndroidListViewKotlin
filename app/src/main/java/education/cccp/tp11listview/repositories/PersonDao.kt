@@ -8,8 +8,9 @@ object PersonDao {
     fun idGenerator() = ++counter
 
     @Throws(Exception::class)
-    fun save(person: Person): Person = if (persons.add(person.copy(id= idGenerator()))) persons.last()
-    else throw Exception("malformed exception : $person")
+    fun save(person: Person): Person =
+        if (persons.add(person.copy(id = idGenerator()))) persons.last()
+        else throw Exception("malformed exception : $person")
 
     fun save(
         index: Int,

@@ -9,6 +9,6 @@ data class Person(
 ) : Serializable {
     companion object {
         private const val serialVersionUID = 1L
-        const val PERSON_DEFAULT_ID_VALUE = -1
+        const val PERSON_DEFAULT_ID_VALUE: Int = -1
     }
 }
