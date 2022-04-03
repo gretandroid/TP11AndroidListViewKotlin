@@ -59,13 +59,11 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun makeTextPersonsIsEmpty() {
-        makeText(
-            this,
-            "person list is empty",
-            LENGTH_SHORT
-        ).show()
-    }
+    private fun makeTextPersonsIsEmpty(): Unit = makeText(
+        this,
+        "person list is empty",
+        LENGTH_SHORT
+    ).show()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

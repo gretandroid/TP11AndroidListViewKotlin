@@ -12,7 +12,6 @@ import org.junit.Test
 
 class PersonDaoUnitTest {
 
-
     companion object {
         @Suppress("unused")
         fun printAll() = println(findAll())
