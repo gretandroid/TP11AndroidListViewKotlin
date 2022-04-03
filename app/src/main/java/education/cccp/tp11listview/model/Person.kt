@@ -1,4 +1,4 @@
-package education.cccp.tp11listview.models
+package education.cccp.tp11listview.model
 
 import java.io.Serializable
 

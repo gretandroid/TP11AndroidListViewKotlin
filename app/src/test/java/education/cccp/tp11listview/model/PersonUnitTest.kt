@@ -1,6 +1,6 @@
-package education.cccp.tp11listview.models
+package education.cccp.tp11listview.model
 
-import education.cccp.tp11listview.models.Person.Companion.PERSON_ID_DEFAULT_VALUE
+import education.cccp.tp11listview.model.Person.Companion.PERSON_ID_DEFAULT_VALUE
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

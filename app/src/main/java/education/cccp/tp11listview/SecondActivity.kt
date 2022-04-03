@@ -11,7 +11,7 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import education.cccp.tp11listview.R.id.personListViewId
 import education.cccp.tp11listview.R.layout.activity_second
-import education.cccp.tp11listview.repositories.PersonDao.findAll
+import education.cccp.tp11listview.dao.PersonDao.findAll
 
 class SecondActivity : AppCompatActivity() {
     companion object {

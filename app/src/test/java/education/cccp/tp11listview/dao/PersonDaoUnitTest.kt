@@ -1,11 +1,11 @@
-package education.cccp.tp11listview.repositories
+package education.cccp.tp11listview.dao
 
-import education.cccp.tp11listview.models.Person
-import education.cccp.tp11listview.models.Person.Companion.PERSON_ID_DEFAULT_VALUE
-import education.cccp.tp11listview.repositories.PersonDao.delete
-import education.cccp.tp11listview.repositories.PersonDao.findAll
-import education.cccp.tp11listview.repositories.PersonDao.idGenerator
-import education.cccp.tp11listview.repositories.PersonDao.save
+import education.cccp.tp11listview.model.Person
+import education.cccp.tp11listview.model.Person.Companion.PERSON_ID_DEFAULT_VALUE
+import education.cccp.tp11listview.dao.PersonDao.delete
+import education.cccp.tp11listview.dao.PersonDao.findAll
+import education.cccp.tp11listview.dao.PersonDao.idGenerator
+import education.cccp.tp11listview.dao.PersonDao.save
 import org.junit.Assert.*
 import org.junit.Test
 

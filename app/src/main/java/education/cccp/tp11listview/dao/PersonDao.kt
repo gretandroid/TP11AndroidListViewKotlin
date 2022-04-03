@@ -1,6 +1,6 @@
-package education.cccp.tp11listview.repositories
+package education.cccp.tp11listview.dao
 
-import education.cccp.tp11listview.models.Person
+import education.cccp.tp11listview.model.Person
 
 object PersonDao {
     private var counter = 0

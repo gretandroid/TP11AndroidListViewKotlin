@@ -16,10 +16,10 @@ import education.cccp.tp11listview.SecondActivity.Companion.CURRENT_PERSON_INDEX
 import education.cccp.tp11listview.SecondActivity.Companion.CURRENT_PERSON_KEY
 import education.cccp.tp11listview.SecondActivity.Companion.OUT_OF_BOUND_INDEX
 import education.cccp.tp11listview.SecondActivity.Companion.PERSONS_KEY
-import education.cccp.tp11listview.models.Person
-import education.cccp.tp11listview.repositories.PersonDao.delete
-import education.cccp.tp11listview.repositories.PersonDao.findAll
-import education.cccp.tp11listview.repositories.PersonDao.save
+import education.cccp.tp11listview.model.Person
+import education.cccp.tp11listview.dao.PersonDao.delete
+import education.cccp.tp11listview.dao.PersonDao.findAll
+import education.cccp.tp11listview.dao.PersonDao.save
 import java.io.Serializable
 import java.util.Objects.requireNonNull
 
