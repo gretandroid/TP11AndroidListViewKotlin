@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                 firstName = personFirstNameEditText.text.toString(),
                 lastName = personLastNameEditText.text.toString()
             )
-        )
+        ).run { currentIndex = id }
         makeText(
             this,
             "person successfully added",
@@ -146,6 +146,8 @@ class MainActivity : AppCompatActivity() {
 
     @Suppress("UNUSED_PARAMETER")
     fun onClickShowAllButtonEvent(view: View) {
-        gotoSecondActivity()
+        if (currentIndex != OUT_OF_BOUND_INDEX)
+            gotoSecondActivity()
+        else makeTextPersonsIsEmpty()
     }
 }
