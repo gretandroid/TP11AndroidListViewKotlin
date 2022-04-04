@@ -16,10 +16,10 @@ import education.cccp.tp11listview.SecondActivity.Companion.CURRENT_PERSON_INDEX
 import education.cccp.tp11listview.SecondActivity.Companion.CURRENT_PERSON_KEY
 import education.cccp.tp11listview.SecondActivity.Companion.OUT_OF_BOUND_INDEX
 import education.cccp.tp11listview.SecondActivity.Companion.PERSONS_KEY
-import education.cccp.tp11listview.model.Person
 import education.cccp.tp11listview.dao.PersonDao.delete
 import education.cccp.tp11listview.dao.PersonDao.findAll
 import education.cccp.tp11listview.dao.PersonDao.save
+import education.cccp.tp11listview.model.Person
 import java.io.Serializable
 import java.util.Objects.requireNonNull
 
@@ -69,25 +69,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
         intentActivityResultLauncher = registerForActivityResult(
-            StartActivityForResult()
-        ) { activityResult: ActivityResult ->
-            activityResult.data?.apply {
-                if (activityResult.resultCode == RESULT_OK) {
-                    (requireNonNull(this)
-                        .getSerializableExtra(CURRENT_PERSON_KEY) as Person)
-                        .apply {
-                            setEditTextPersonFields(
-                                firstName,
-                                lastName
-                            )
-                        }
-                    currentIndex = getIntExtra(
-                        CURRENT_PERSON_INDEX_KEY,
-                        OUT_OF_BOUND_INDEX
-                    )
+            StartActivityForResult(),
+            fun(activityResult: ActivityResult) {
+                activityResult.data?.apply {
+                    if (activityResult.resultCode == RESULT_OK) {
+                        (requireNonNull(this)
+                            .getSerializableExtra(CURRENT_PERSON_KEY) as Person)
+                            .apply {
+                                setEditTextPersonFields(
+                                    firstName,
+                                    lastName
+                                )
+                            }
+                        currentIndex = getIntExtra(
+                            CURRENT_PERSON_INDEX_KEY,
+                            OUT_OF_BOUND_INDEX
+                        )
+                    }
                 }
             }
-        }
+        )
     }
 
     @Suppress("UNUSED_PARAMETER")
