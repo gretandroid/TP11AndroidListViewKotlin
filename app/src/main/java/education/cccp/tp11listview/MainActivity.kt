@@ -16,10 +16,10 @@ import education.cccp.tp11listview.SecondActivity.Companion.CURRENT_PERSON_INDEX
 import education.cccp.tp11listview.SecondActivity.Companion.CURRENT_PERSON_KEY
 import education.cccp.tp11listview.SecondActivity.Companion.OUT_OF_BOUND_INDEX
 import education.cccp.tp11listview.SecondActivity.Companion.PERSONS_KEY
-import education.cccp.tp11listview.model.Person
 import education.cccp.tp11listview.dao.PersonDao.delete
 import education.cccp.tp11listview.dao.PersonDao.findAll
 import education.cccp.tp11listview.dao.PersonDao.save
+import education.cccp.tp11listview.model.Person
 import java.io.Serializable
 import java.util.Objects.requireNonNull
 
@@ -91,26 +91,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     @Suppress("UNUSED_PARAMETER")
-    fun onClickCreateButtonEvent(view: View) {
+    fun onClickCreateButtonEvent(view: View) =
         save(
             Person(
                 firstName = personFirstNameEditText.text.toString(),
                 lastName = personLastNameEditText.text.toString()
             )
-        ).run { currentIndex = id }
-        makeText(
-            this,
-            "person successfully added",
-            LENGTH_LONG
-        ).show()
-        setEditTextPersonFields(
-            EMPTY_FIELD,
-            EMPTY_FIELD
-        )
-    }
+        ).also {
+            currentIndex = findAll().size - 1
+            makeText(
+                this,
+                "person successfully added",
+                LENGTH_LONG
+            ).show()
+            setEditTextPersonFields(
+                EMPTY_FIELD,
+                EMPTY_FIELD
+            )
+        }
 
     @Suppress("UNUSED_PARAMETER")
-    fun onClickEditButtonEvent(view: View) {
+    fun onClickEditButtonEvent(view: View) =
         if (currentIndex != OUT_OF_BOUND_INDEX) {
             save(
                 currentIndex,
@@ -126,10 +127,9 @@ class MainActivity : AppCompatActivity() {
             ).show()
             gotoSecondActivity()
         } else makeTextPersonsIsEmpty()
-    }
 
     @Suppress("UNUSED_PARAMETER")
-    fun onClickDeleteButtonEvent(view: View) {
+    fun onClickDeleteButtonEvent(view: View) =
         if (currentIndex != OUT_OF_BOUND_INDEX) {
             delete(currentIndex)
             setEditTextPersonFields(EMPTY_FIELD, EMPTY_FIELD)
@@ -140,12 +140,10 @@ class MainActivity : AppCompatActivity() {
             ).show()
             gotoSecondActivity()
         } else makeTextPersonsIsEmpty()
-    }
 
     @Suppress("UNUSED_PARAMETER")
-    fun onClickShowAllButtonEvent(view: View) {
+    fun onClickShowAllButtonEvent(view: View) =
         if (currentIndex != OUT_OF_BOUND_INDEX)
             gotoSecondActivity()
         else makeTextPersonsIsEmpty()
-    }
 }
