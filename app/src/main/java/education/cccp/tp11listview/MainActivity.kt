@@ -70,24 +70,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(activity_main)
         intentActivityResultLauncher = registerForActivityResult(
             StartActivityForResult(),
-        ) { activityResult: ActivityResult ->
-            activityResult.data?.apply {
-                if (activityResult.resultCode == RESULT_OK) {
-                    (requireNonNull(this)
-                        .getSerializableExtra(CURRENT_PERSON_KEY) as Person)
-                        .apply {
-                            setEditTextPersonFields(
-                                firstName,
-                                lastName
-                            )
-                        }
-                    currentIndex = getIntExtra(
-                        CURRENT_PERSON_INDEX_KEY,
-                        OUT_OF_BOUND_INDEX
-                    )
+            fun(activityResult: ActivityResult) {
+                activityResult.data?.apply {
+                    if (activityResult.resultCode == RESULT_OK) {
+                        (requireNonNull(this)
+                            .getSerializableExtra(CURRENT_PERSON_KEY) as Person)
+                            .apply {
+                                setEditTextPersonFields(
+                                    firstName,
+                                    lastName
+                                )
+                            }
+                        currentIndex = getIntExtra(
+                            CURRENT_PERSON_INDEX_KEY,
+                            OUT_OF_BOUND_INDEX
+                        )
+                    }
                 }
-            }
-        }
+            },
+        )
     }
 
     @Suppress("UNUSED_PARAMETER")
