@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
         intentActivityResultLauncher = registerForActivityResult(
-            StartActivityForResult()
+            StartActivityForResult(),
         ) { activityResult: ActivityResult ->
             activityResult.data?.apply {
                 if (activityResult.resultCode == RESULT_OK) {
