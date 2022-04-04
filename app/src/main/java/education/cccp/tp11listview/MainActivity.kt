@@ -70,48 +70,48 @@ class MainActivity : AppCompatActivity() {
         setContentView(activity_main)
         intentActivityResultLauncher = registerForActivityResult(
             StartActivityForResult(),
-            fun(activityResult: ActivityResult) {
-                activityResult.data?.apply {
-                    if (activityResult.resultCode == RESULT_OK) {
-                        (requireNonNull(this)
-                            .getSerializableExtra(CURRENT_PERSON_KEY) as Person)
-                            .apply {
-                                setEditTextPersonFields(
-                                    firstName,
-                                    lastName
-                                )
-                            }
-                        currentIndex = getIntExtra(
-                            CURRENT_PERSON_INDEX_KEY,
-                            OUT_OF_BOUND_INDEX
-                        )
-                    }
+        ) { activityResult: ActivityResult ->
+            activityResult.data?.apply {
+                if (activityResult.resultCode == RESULT_OK) {
+                    (requireNonNull(this)
+                        .getSerializableExtra(CURRENT_PERSON_KEY) as Person)
+                        .apply {
+                            setEditTextPersonFields(
+                                firstName,
+                                lastName
+                            )
+                        }
+                    currentIndex = getIntExtra(
+                        CURRENT_PERSON_INDEX_KEY,
+                        OUT_OF_BOUND_INDEX
+                    )
                 }
             }
-        )
+        }
     }
 
     @Suppress("UNUSED_PARAMETER")
-    fun onClickCreateButtonEvent(view: View) {
+    fun onClickCreateButtonEvent(view: View) =
         save(
             Person(
                 firstName = personFirstNameEditText.text.toString(),
                 lastName = personLastNameEditText.text.toString()
             )
-        ).run { currentIndex = id }
-        makeText(
-            this,
-            "person successfully added",
-            LENGTH_LONG
-        ).show()
-        setEditTextPersonFields(
-            EMPTY_FIELD,
-            EMPTY_FIELD
-        )
-    }
+        ).also {
+            currentIndex = findAll().size - 1
+            makeText(
+                this,
+                "person successfully added",
+                LENGTH_LONG
+            ).show()
+            setEditTextPersonFields(
+                EMPTY_FIELD,
+                EMPTY_FIELD
+            )
+        }
 
     @Suppress("UNUSED_PARAMETER")
-    fun onClickEditButtonEvent(view: View) {
+    fun onClickEditButtonEvent(view: View) =
         if (currentIndex != OUT_OF_BOUND_INDEX) {
             save(
                 currentIndex,
@@ -127,10 +127,9 @@ class MainActivity : AppCompatActivity() {
             ).show()
             gotoSecondActivity()
         } else makeTextPersonsIsEmpty()
-    }
 
     @Suppress("UNUSED_PARAMETER")
-    fun onClickDeleteButtonEvent(view: View) {
+    fun onClickDeleteButtonEvent(view: View) =
         if (currentIndex != OUT_OF_BOUND_INDEX) {
             delete(currentIndex)
             setEditTextPersonFields(EMPTY_FIELD, EMPTY_FIELD)
@@ -141,12 +140,10 @@ class MainActivity : AppCompatActivity() {
             ).show()
             gotoSecondActivity()
         } else makeTextPersonsIsEmpty()
-    }
 
     @Suppress("UNUSED_PARAMETER")
-    fun onClickShowAllButtonEvent(view: View) {
+    fun onClickShowAllButtonEvent(view: View) =
         if (currentIndex != OUT_OF_BOUND_INDEX)
             gotoSecondActivity()
         else makeTextPersonsIsEmpty()
-    }
 }
